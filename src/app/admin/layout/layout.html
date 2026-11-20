@@ -1,0 +1,170 @@
+
+<div class="admin-layout">
+
+  <!-- TOP HEADER -->
+  <header class="admin-header">
+    <!-- DYNAMIC PAGE INFORMATION -->
+    <div class="header-title-group">
+      <h1>{{ pageTitle }}</h1>
+      <p>{{ pageDescription }}</p>
+    </div>
+
+    <!-- ADMIN DROPDOWN -->
+    <div class="header-right">
+
+      <div class="admin-dropdown">
+
+        <button
+          type="button"
+          class="admin-dropdown-trigger"
+          (click)="toggleAdminDropdown($event)"
+          [attr.aria-expanded]="adminDropdownOpen"
+          aria-label="Open administrator menu"
+        >
+
+          <span class="admin-avatar">
+
+            <img
+              *ngIf="profilePhotoUrl"
+              [src]="profilePhotoUrl"
+              alt="Admin profile picture"
+            />
+
+            <span *ngIf="!profilePhotoUrl">
+              {{ adminInitial }}
+            </span>
+
+          </span>
+
+          <span class="admin-dropdown-name">
+            {{ adminName }}
+          </span>
+
+          <span class="dropdown-arrow">
+            {{ adminDropdownOpen ? '⌃' : '⌄' }}
+          </span>
+
+        </button>
+
+        <!-- DROPDOWN MENU -->
+        <div
+          class="admin-dropdown-menu"
+          *ngIf="adminDropdownOpen"
+        >
+
+          <a
+            routerLink="/admin/admin-profile"
+            (click)="closeAdminDropdown()"
+          >
+            <span class="dropdown-icon">◉</span>
+            <span>My Profile</span>
+          </a>
+
+          <button
+            type="button"
+            class="dropdown-logout"
+            (click)="logout()"
+          >
+            <span class="dropdown-icon">↪</span>
+            <span>Logout</span>
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="sidebar-heading">
+      <span>ADMIN MENU</span>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Admin navigation">
+
+      <a
+        routerLink="/admin/dashboard"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <span class="nav-icon">▦</span>
+        <span class="nav-label">Dashboard</span>
+      </a>
+
+      <a routerLink="/admin/services" routerLinkActive="active">
+        <span class="nav-icon">▣</span>
+        <span class="nav-label">Services</span>
+      </a>
+
+      <a routerLink="/admin/reviews" routerLinkActive="active">
+        <span class="nav-icon">☆</span>
+        <span class="nav-label">Reviews</span>
+      </a>
+
+      <a routerLink="/admin/messages" routerLinkActive="active">
+        <span class="nav-icon">✉</span>
+        <span class="nav-label">Messages</span>
+      </a>
+
+      <a routerLink="/admin/business-information" routerLinkActive="active">
+        <span class="nav-icon">▤</span>
+        <span class="nav-label">Business Information</span>
+      </a>
+
+      <a routerLink="/admin/manage-team" routerLinkActive="active">
+        <span class="nav-icon">♙</span>
+        <span class="nav-label">Our Team</span>
+      </a>
+
+      <a routerLink="/admin/admin-profile" routerLinkActive="active">
+        <span class="nav-icon">◉</span>
+        <span class="nav-label">Admin Profile</span>
+      </a>
+
+    </nav>
+
+    <!-- SIDEBAR BOTTOM ACTIONS -->
+    <div class="sidebar-bottom">
+
+      <button
+        type="button"
+        class="theme-toggle"
+        (click)="themeService.toggle()"
+        [attr.aria-label]="'Switch to ' + (themeService.current === 'dark' ? 'day' : 'night') + ' mode'"
+      >
+        <span class="theme-icon">
+          {{ themeService.current === 'dark' ? '☀' : '☾' }}
+        </span>
+
+        <span class="theme-label">
+          {{ themeService.current === 'dark' ? 'Light Mode' : 'Dark Mode' }}
+        </span>
+      </button>
+
+      <button
+        type="button"
+        class="logout-button"
+        (click)="logout()"
+      >
+        <span class="nav-icon">↪</span>
+        <span class="nav-label">Logout</span>
+      </button>
+
+    </div>
+
+  </aside>
+
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+    <div class="content-wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+
+</div>

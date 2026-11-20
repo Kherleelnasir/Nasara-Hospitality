@@ -1,0 +1,301 @@
+<div class="reviews-page">
+
+  <div class="content">
+
+
+  <!-- Messages -->
+
+  <p
+    class="success-message"
+    *ngIf="message"
+  >
+    {{ message }}
+  </p>
+
+  <p
+    class="error-message"
+    *ngIf="errorMessage"
+  >
+    {{ errorMessage }}
+  </p>
+
+
+  <!-- Search and Filters -->
+
+  <div class="filter-section">
+
+    <div class="search-box">
+
+      <input
+        type="text"
+        placeholder="Search customer or review..."
+        [(ngModel)]="searchText"
+        (keyup.enter)="searchReviews()"
+      />
+
+    </div>
+
+
+    <div class="filter-box">
+
+      <select
+        [(ngModel)]="selectedStatus"
+      >
+
+        <option value="all">
+          All Status
+        </option>
+
+        <option value="pending">
+          Pending
+        </option>
+
+        <option value="approved">
+          Approved
+        </option>
+
+        <option value="rejected">
+          Rejected
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <div class="filter-box">
+
+      <select
+        [(ngModel)]="selectedRating"
+      >
+
+        <option value="all">
+          All Ratings
+        </option>
+
+        <option value="5">
+          5 Stars
+        </option>
+
+        <option value="4">
+          4 Stars
+        </option>
+
+        <option value="3">
+          3 Stars
+        </option>
+
+        <option value="2">
+          2 Stars
+        </option>
+
+        <option value="1">
+          1 Star
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <button
+      type="button"
+      class="search-button"
+      (click)="searchReviews()"
+    >
+      Search
+    </button>
+
+
+    <button
+      type="button"
+      class="clear-button"
+      (click)="clearFilters()"
+    >
+      Clear
+    </button>
+
+  </div>
+
+
+  <!-- Loading -->
+
+  <div
+    class="loading-message"
+    *ngIf="loading"
+  >
+    Loading reviews...
+  </div>
+
+
+  <!-- Reviews Table -->
+
+  <div
+    class="table-container"
+    *ngIf="!loading"
+  >
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th>Customer</th>
+
+          <th>Rating</th>
+
+          <th>Review</th>
+
+          <th>Date</th>
+
+          <th>Status</th>
+
+          <th>Action</th>
+
+        </tr>
+
+      </thead>
+
+
+      <tbody>
+
+        <tr
+          *ngFor="let review of filteredReviews"
+        >
+
+          <!-- Customer -->
+
+          <td>
+
+            <div class="customer-name">
+              {{ review.customerName || 'Customer' }}
+            </div>
+
+          </td>
+
+
+          <!-- Rating -->
+
+          <td>
+
+            <div class="rating">
+
+              <span>
+                {{ getStars(review.rating) }}
+              </span>
+
+              <small>
+                {{ review.rating }}/5
+              </small>
+
+            </div>
+
+          </td>
+
+
+          <!-- Review -->
+
+          <td>
+
+            <div class="review-text">
+              {{ review.comment }}
+            </div>
+
+          </td>
+
+
+          <!-- Date -->
+
+          <td>
+            {{ formatDate(review.createdAt) }}
+          </td>
+
+
+          <!-- Status -->
+
+          <td>
+
+            <span
+              class="status"
+              [class.pending]="review.status === 'pending'"
+              [class.approved]="review.status === 'approved'"
+              [class.rejected]="review.status === 'rejected'"
+            >
+              {{ review.status }}
+            </span>
+
+          </td>
+
+
+          <!-- Actions -->
+
+          <td>
+
+            <div class="action-buttons">
+
+              <!-- Approve -->
+
+              <button
+                type="button"
+                class="action-button approve-button"
+                title="Accept"
+                *ngIf="review.status !== 'approved'"
+                (click)="approveReview(review)"
+              >
+                Accept
+              </button>
+
+
+              <!-- Reject -->
+
+              <button
+                type="button"
+                class="action-button reject-button"
+                title="Reject"
+                *ngIf="review.status !== 'rejected'"
+                (click)="rejectReview(review)"
+              >
+                Reject
+              </button>
+
+              <button
+                type="button"
+                class="action-button delete-button"
+                title="Delete"
+                (click)="deleteReview(review)"
+              >
+                Delete
+              </button>
+
+            </div>
+
+          </td>
+
+        </tr>
+
+
+        <!-- Empty -->
+
+        <tr
+          *ngIf="filteredReviews.length === 0"
+        >
+
+          <td
+            colspan="6"
+            class="empty-message"
+          >
+            No reviews found.
+          </td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>
+
+</div>

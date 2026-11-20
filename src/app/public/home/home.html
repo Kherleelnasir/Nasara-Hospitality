@@ -1,0 +1,732 @@
+<div class="home-page">
+  <!-- NAVIGATION -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a class="brand" href="#home">
+        <span class="brand-mark">
+          <img src="/images/logo.png" alt="Nasara Hospitality">
+        </span>
+        <span>Nasara Hospitality</span>
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <button
+          type="button"
+          class="theme-toggle"
+          (click)="themeService.toggle()"
+          [attr.aria-label]="'Switch to ' + (themeService.current === 'dark' ? 'light' : 'dark') + ' mode'"
+          [attr.title]="'Switch to ' + (themeService.current === 'dark' ? 'light' : 'dark') + ' mode'">
+          <span
+            class="theme-icon"
+            [class.moon-icon]="themeService.current !== 'dark'"
+            aria-hidden="true">
+            {{ themeService.current === 'dark' ? '☀' : '☾' }}
+          </span>
+          <span class="theme-toggle-label">
+            {{ themeService.current === 'dark' ? 'Day mode' : 'Night mode' }}
+          </span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="home" class="hero-section">
+      <div class="hero-content">
+        <span class="eyebrow">WELCOME TO NASARA HOSPITALITY</span>
+        <h1>
+          Hospitality That Makes You Feel
+          <span>Welcome.</span>
+        </h1>
+        <p>
+          {{ businessShortDescription ||
+          'Discover thoughtful service, a welcoming atmosphere, and a team committed to making every experience memorable.' }}
+        </p>
+        <div class="hero-actions">
+          <a href="#services" class="primary-button">
+            Explore Our Services
+          </a>
+          <a href="#about" class="secondary-button">
+            Learn About Us
+          </a>
+        </div>
+        <div class="hero-trust">
+          <span class="trust-dot"></span>
+          Professional service. Personal attention.
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-image-placeholder">
+          <img
+            src="/images/hero.jpg"
+            alt="Chef carefully plating hospitality cuisine"
+          >
+          <p>Welcome to Nasara Hospitality</p>
+          <small>Comfort · Care · Excellence</small>
+        </div>
+        <div class="hero-floating-card">
+          <span class="floating-icon">✓</span>
+          <div>
+            <strong>Service with care</strong>
+            <p>Your experience matters to us.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUICK INFORMATION -->
+    <section class="quick-info">
+      <div class="quick-info-item">
+        <span class="quick-info-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" stroke-linecap="round"
+            stroke-linejoin="round" fill="none" width="32" height="32"
+            xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 21c3.5-3.6 7-6.8236 7-10.8-0-3.9765-3.134-7.2-7-7.2s-7 3.2235-7 7.2c0 3.9764 3.5 7.2 7 10.8z" />
+            <path d="M12 13c1.6569 0 3-1.3431 3-3s-1.3431-3-3-3-3 1.3431-3 3 1.3431 3 3 3z" />
+          </svg>
+        </span>
+        <div>
+          <strong>Our Location</strong>
+          <p>{{ address || city || 'Contact us for our location' }}</p>
+        </div>
+      </div>
+
+      <div class="quick-info-item">
+        <span class="quick-info-icon">
+          <svg viewBox="0 0 24 24" fill="none" width="26" height="26"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill="currentColor" clip-rule="evenodd"
+              fill-rule="evenodd"
+              d="M17.3545 22.2323c-2.0201-0.5061-6.1556-1.933-9.9047-5.6821-3.7492-3.7491-5.176-7.8846-5.6821-9.9047C1.4768 5.4846 2.0006 4.3643 2.8887 3.73l2.3282-1.6631c1.3623-.973 3.2574-.6428 4.2103.7336l1.4658 2.1173c.6222.8987.4076 2.1305-.4819 2.7658L9.2423 8.5185c.1769.6766.7271 2.0661 2.4501 3.7891s3.1125 2.2731 3.7891 2.45l.8348-1.1688c.6354-.8894 1.8672-1.1041 2.7659-.4819l2.1173 1.4658c1.3764.953 1.7066 2.848.7335 4.2103l-1.663 2.3283c-.6344.8881-1.7546 1.4119-2.9155 1.121z" />
+          </svg>
+        </span>
+        <div>
+          <strong>Call Us</strong>
+          <p>{{ phone || 'Contact details coming soon' }}</p>
+        </div>
+      </div>
+
+      <div class="quick-info-item">
+        <span class="quick-info-icon">◷</span>
+        <div>
+          <strong>Opening Hours</strong>
+          <p>
+            {{ openingTime && closingTime
+              ? openingTime + ' – ' + closingTime
+              : 'Please contact us' }}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section about-section">
+      <div class="about-visual">
+        <div class="about-visual-inner">
+          <img src="/images/about.png" alt="Nasara Hospitality">
+        </div>
+      </div>
+
+      <div class="about-content">
+        <span class="section-label">ABOUT US</span>
+        <h2>A Welcoming Experience, Built Around You</h2>
+        <p>
+          Nasara Hospitality & Tourism Services Ltd is an indigenous hospitality and tourism firm based in Kano, Nigeria.
+          The company is committed to delivering measurable results that drive growth and profitability for our clients.
+          Established in 2019, we specialize in
+        </p>
+
+        <div class="about-points">
+          <div>
+            <span class="check-icon">✓</span>
+            <span>Hotel and Restaurant Services</span>
+          </div>
+          <div>
+            <span class="check-icon">✓</span>
+            <span>Outdoor Catering and Banquet Services</span>
+          </div>
+          <div>
+            <span class="check-icon">✓</span>
+            <span>Travel Facilitation and Tour Guide Services</span>
+          </div>
+          <div>
+            <span class="check-icon">✓</span>
+            <span>Conduct all forms of Excursion and Packages Tours</span>
+          </div>
+          <div>
+            <span class="check-icon">✓</span>
+            <span>Skills Training and Capacity Building in Hospitality and Tourism Sector</span>
+          </div>
+          <div>
+            <span class="check-icon">✓</span>
+            <span>General Consultancy Services in Hospitality and Tourism Businesses</span>
+          </div>
+        </div>
+
+        <p style="text-align: justify;">
+          We pride ourselves on our local expertise of northern Nigeria,
+          exceptional customer service, and commitment to sustainable
+          hospitality and tourism. Our team of experienced hotel managers,
+          tour guides and travel specialists is passionate about showcasing
+          the local beauty, hospitality and culture of Northern Nigeria
+          while creating memorable experiences for our clients.
+        </p>
+
+        <a href="#contact" class="text-link">
+          Get in touch <span>→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="section services-section">
+      <div class="section-heading">
+        <span class="section-label">WHAT WE DO</span>
+        <h2>Our Services</h2>
+        <p>
+          Explore the services we offer and find out how we can help you.
+        </p>
+      </div>
+
+      <div *ngIf="servicesLoading" class="status-panel">
+        <span class="loading-spinner"></span>
+        <p>Loading our services...</p>
+      </div>
+
+      <div
+        *ngIf="!servicesLoading && services.length === 0"
+        class="empty-panel">
+        <span class="empty-panel-icon">...</span>
+        <h3>Our services are being updated</h3>
+        <p>Please contact us to learn more about what we offer.</p>
+      </div>
+
+      <!-- SERVICES CAROUSEL -->
+      <div
+        class="carousel-shell services-carousel"
+        *ngIf="!servicesLoading && services.length > 0">
+
+        <button
+          type="button"
+          class="carousel-arrow carousel-arrow-prev"
+          aria-label="Scroll to previous services"
+          title="Previous services"
+          (click)="scrollCarousel('servicesCarousel', -1)">
+          &#10094;
+        </button>
+
+        <div id="servicesCarousel" class="services-grid">
+          <article class="service-card" *ngFor="let service of services">
+            <div class="service-image">
+              <img
+                *ngIf="service.imageUrl && !service.imageLoadError"
+                [src]="service.imageUrl"
+                [alt]="service.name"
+                loading="lazy"
+                (error)="onServiceImageError(service)">
+
+              <div
+                *ngIf="!service.imageUrl || service.imageLoadError"
+                class="service-image-fallback">
+                <span>Image unavailable</span>
+              </div>
+            </div>
+
+            <div class="service-card-content">
+              <h3>{{ service.name }}</h3>
+              <p>{{ service.description }}</p>
+              <a href="#contact" class="text-link">
+                Enquire about this service <span>→</span>
+              </a>
+            </div>
+          </article>
+        </div>
+
+        <button
+          type="button"
+          class="carousel-arrow carousel-arrow-next"
+          aria-label="Scroll to next services"
+          title="Next services"
+          (click)="scrollCarousel('servicesCarousel', 1)">
+          &#10095;
+        </button>
+      </div>
+    </section>
+
+    <!-- CUSTOMER REVIEWS -->
+    <section id="reviews" class="section reviews-section">
+      <div class="section-heading">
+        <span class="section-label">CUSTOMER FEEDBACK</span>
+        <h2>What Our Customers Say</h2>
+        <p>
+          Your experience matters to us. Read customer feedback or share yours.
+        </p>
+      </div>
+
+      <div *ngIf="reviewsLoading" class="status-panel">
+        <span class="loading-spinner"></span>
+        <p>Loading customer reviews...</p>
+      </div>
+
+      <div
+        *ngIf="!reviewsLoading && approvedReviews.length === 0"
+        class="empty-panel">
+        <span class="empty-panel-icon">★</span>
+        <h3>Be the first to share your experience</h3>
+        <p>We look forward to hearing from you.</p>
+      </div>
+
+      <!-- REVIEWS CAROUSEL -->
+      <div
+        class="carousel-shell reviews-carousel"
+        *ngIf="!reviewsLoading && approvedReviews.length > 0">
+
+        <button
+          type="button"
+          class="carousel-arrow carousel-arrow-prev"
+          aria-label="Scroll to previous reviews"
+          title="Previous reviews"
+          (click)="scrollCarousel('reviewsCarousel', -1)">
+          &#10094;
+        </button>
+
+        <div id="reviewsCarousel" class="reviews-grid">
+          <article class="review-card" *ngFor="let review of approvedReviews">
+            <div class="review-stars" aria-label="Customer rating">
+              <span *ngFor="let star of getStars(review.rating)">
+                {{ star ? '★' : '☆' }}
+              </span>
+            </div>
+
+            <p class="review-comment">{{ review.comment }}</p>
+
+            <div class="review-author">
+              <div class="review-avatar">
+                {{ getInitial(review.customerName) }}
+              </div>
+              <div>
+                <strong>{{ review.customerName }}</strong>
+                <small>{{ getTime(review.createdAt) }}</small>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <button
+          type="button"
+          class="carousel-arrow carousel-arrow-next"
+          aria-label="Scroll to next reviews"
+          title="Next reviews"
+          (click)="scrollCarousel('reviewsCarousel', 1)">
+          &#10095;
+        </button>
+      </div>
+
+      <!-- REVIEW FORM -->
+      <div class="review-form-wrapper">
+        <div class="review-form-heading">
+          <span class="section-label">YOUR FEEDBACK MATTERS</span>
+          <h3>Leave a Review</h3>
+          <p>Tell us about your experience with Nasara Hospitality.</p>
+        </div>
+
+        <div *ngIf="reviewSuccess" class="form-success" role="status">
+          {{ reviewSuccess }}
+        </div>
+
+        <div *ngIf="reviewError" class="form-error" role="alert">
+          {{ reviewError }}
+        </div>
+
+        <form (ngSubmit)="submitReview()" #reviewNgForm="ngForm">
+          <div class="form-group">
+            <label for="reviewCustomerName">Your Name *</label>
+            <input
+              id="reviewCustomerName"
+              name="reviewCustomerName"
+              type="text"
+              [(ngModel)]="reviewForm.customerName"
+              placeholder="Enter your name"
+              maxlength="100"
+              autocomplete="name"
+              required>
+          </div>
+
+          <div class="form-group">
+            <label>Rate Your Experience *</label>
+            <div class="rating-selector">
+              <button
+                *ngFor="let star of ratingOptions"
+                type="button"
+                class="rating-star-button"
+                [class.star-selected]="star <= reviewForm.rating"
+                [attr.aria-label]="'Rate ' + star + ' out of 5 stars'"
+                [attr.aria-pressed]="reviewForm.rating === star"
+                (click)="selectRating(star)">
+                ★
+              </button>
+
+              <span *ngIf="reviewForm.rating > 0">
+                {{ reviewForm.rating }} / 5
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="reviewComment">Your Review *</label>
+            <textarea
+              id="reviewComment"
+              name="reviewComment"
+              [(ngModel)]="reviewForm.comment"
+              placeholder="Share your experience with us..."
+              rows="5"
+              maxlength="2000"
+              required></textarea>
+            <small class="field-hint">Maximum 2,000 characters.</small>
+          </div>
+
+          <button
+            type="submit"
+            class="primary-button submit-button"
+            [disabled]="reviewSubmitting">
+            {{ reviewSubmitting ? 'Submitting...' : 'Submit Review' }}
+          </button>
+
+          <p class="approval-note">
+            Your review will appear publicly after it has been approved.
+          </p>
+        </form>
+      </div>
+    </section>
+
+    <!-- MEET OUR TEAM -->
+    <section id="team" class="section team-section">
+      <div class="section-heading">
+        <span class="section-label">THE PEOPLE BEHIND OUR SERVICE</span>
+        <h2>Meet Our Team</h2>
+        <p>
+          Get to know the people helping us deliver a welcoming experience.
+        </p>
+      </div>
+
+      <div *ngIf="leadershipLoading" class="status-panel">
+        <span class="loading-spinner"></span>
+        <p>Loading our team...</p>
+      </div>
+
+      <div
+        *ngIf="!leadershipLoading && leadershipTeam.length === 0"
+        class="empty-panel">
+        <h3>Our team information is being updated</h3>
+        <p>Please check back later.</p>
+      </div>
+
+      <!-- TEAM CAROUSEL -->
+      <div
+        class="carousel-shell team-carousel"
+        *ngIf="!leadershipLoading && leadershipTeam.length > 0">
+
+        <button
+          type="button"
+          class="carousel-arrow carousel-arrow-prev"
+          aria-label="Scroll to previous team members"
+          title="Previous team members"
+          (click)="scrollCarousel('teamCarousel', -1)">
+          &#10094;
+        </button>
+
+        <div id="teamCarousel" class="team-grid">
+          <article class="team-card" *ngFor="let member of leadershipTeam">
+            <div class="team-photo">
+              <img
+                *ngIf="member.imageUrl"
+                [src]="member.imageUrl"
+                [alt]="member.name"
+                loading="lazy">
+
+              <div *ngIf="!member.imageUrl" class="team-photo-fallback">
+                {{ getInitial(member.name) }}
+              </div>
+            </div>
+
+            <div class="team-details">
+              <h3>{{ member.name }}</h3>
+              <span class="team-position">{{ member.position }}</span>
+              <p>{{ member.bio }}</p>
+            </div>
+          </article>
+        </div>
+
+        <button
+          type="button"
+          class="carousel-arrow carousel-arrow-next"
+          aria-label="Scroll to next team members"
+          title="Next team members"
+          (click)="scrollCarousel('teamCarousel', 1)">
+          &#10095;
+        </button>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section contact-section">
+      <div class="contact-layout">
+
+        <!-- CONTACT INFORMATION -->
+        <div class="contact-information">
+          <span class="section-label">CONTACT US</span>
+          <h2>We'd Love to Hear From You</h2>
+
+          <p>
+            Have a question or need more information? Send us a message and
+            our team will get back to you.
+          </p>
+
+          <div class="contact-detail">
+            <span class="contact-detail-icon">
+              <svg viewBox="0 0 24 24" fill="none" width="26" height="26"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill="currentColor" clip-rule="evenodd"
+                  fill-rule="evenodd"
+                  d="M17.3545 22.2323c-2.0201-.5061-6.1556-1.933-9.9047-5.6821-3.7491-3.7491-5.176-7.8846-5.6821-9.9047C1.4768 5.4846 2.0006 4.3643 2.8887 3.73l2.3282-1.6631c1.3623-.973 3.2574-.6428 4.2103.7336l1.4658 2.1173c.6222.8987.4076 2.1305-.4819 2.7658L9.2423 8.5185c.1769.6766.7271 2.0661 2.4501 3.7891s3.1125 2.2731 3.7891 2.45l.8348-1.1688c.6354-.8894 1.8672-1.1041 2.7659-.4819l2.1173 1.4658c1.3764.953 1.7066 2.848.7335 4.2103l-1.663 2.3283c-.6344.8881-1.7546 1.4119-2.9155 1.121z" />
+              </svg>
+            </span>
+            <div>
+              <strong>Phone</strong>
+              <p>{{ phone || 'Phone number not available' }}</p>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <span class="contact-detail-icon">✉</span>
+            <div>
+              <strong>Email</strong>
+              <p>{{ email || 'Email address not available' }}</p>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <span class="contact-detail-icon">
+              <svg viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" stroke-linecap="round"
+                stroke-linejoin="round" fill="none" width="32" height="32"
+                xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 21c3.5-3.6 7-6.8236 7-10.8-0-3.9765-3.134-7.2-7-7.2s-7 3.2236-7 7.2c0 3.9764 3.5 7.2 7 10.8z" />
+                <path d="M12 13c1.6569 0 3-1.3431 3-3s-1.3431-3-3-3-3 1.3431-3 3 1.3431 3 3 3z" />
+              </svg>
+            </span>
+            <div>
+              <strong>Address</strong>
+              <p>{{ address || city || 'Address not available' }}</p>
+            </div>
+          </div>
+
+          <div class="social-row">
+            <!-- WHATSAPP ICON -->
+            <a
+              *ngIf="whatsapp"
+              class="whatsapp-link"
+              [href]="whatsappLink"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Contact us on WhatsApp"
+              title="WhatsApp">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor"
+                  d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.5 0 .1 5.4.1 12c0 2.1.6 4.1 1.6 5.9L0 24l6.3-1.7a12 12 0 0 0 5.8 1.5h.1c6.6 0 12-5.4 12-12 0-3.2-1.3-6.1-3.7-8.3ZM12.1 21.7a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.6-.3-.4A9.7 9.7 0 0 1 2.2 12a9.9 9.9 0 0 1 9.9-9.9 9.8 9.8 0 0 1 7 2.9 9.8 9.8 0 0 1 2.9 7 9.9 9.9 0 0 1-9.9 9.7Zm5.4-7.4c-.3-.2-1.7-.9-2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.4.3-.6s0-.4 0-.6-.7-1.7-1-2.3c-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.2-1.2 2.8 1.2 3.2 1.4 3.4 2.4 3.7 5.8 5.1c.8.3 1.4.5 1.9.6.8.3 1.5.2 2 .1.6-.1 1.7-.7 2-1.4s.3-1.3.2-1.4-.3-.3-.6-.5Z" />
+              </svg>
+            </a>
+
+            <!-- SOCIAL MEDIA ICONS -->
+            <div class="social-links" *ngIf="hasSocialLinks">
+              <a
+                *ngIf="facebook"
+                [href]="facebook"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                title="Facebook">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="currentColor"
+                    d="M13.5 21v-8h2.7l.4-3.1h-3.1v-2c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.2v2.3H7.7v3.1h2.7v8z" />
+                </svg>
+              </a>
+
+              <a
+                *ngIf="instagram"
+                [href]="instagram"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                title="Instagram">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="5"
+                    fill="none" stroke="currentColor" stroke-width="2" />
+                  <circle cx="12" cy="12" r="4"
+                    fill="none" stroke="currentColor" stroke-width="2" />
+                  <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" />
+                </svg>
+              </a>
+
+              <a
+                *ngIf="tiktok"
+                [href]="tiktok"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="TikTok"
+                title="TikTok">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="currentColor"
+                    d="M19.6 8.1a7.1 7.1 0 0 1-4.3-1.4v8.1a5.7 5.7 0 1 1-5.7-5.7c.4 0 .8 0 1.2.1v3.2a2.6 2.6 0 1 0 1.5 2.4V2.5h3.1a4.3 4.3 0 0 0 4.2 4.2z" />
+                </svg>
+              </a>
+
+              <a
+                *ngIf="twitter"
+                [href]="twitter"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="X or Twitter"
+                title="X / Twitter">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="currentColor"
+                    d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3L12 14.6 5.6 22H2.4l7.3-8.4L1.8 2h6.5l4.5 6.8zM17.8 19.8h1.7L7.2 4.1H5.4z" />
+                </svg>
+              </a>
+
+              <a
+                *ngIf="youtube"
+                [href]="youtube"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube"
+                title="YouTube">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="currentColor"
+                    d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.3 3.6z" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONTACT FORM -->
+        <div class="contact-form-card">
+          <h3>Send Us a Message</h3>
+          <p class="contact-form-intro">
+            Fields marked with * are required.
+          </p>
+
+          <div *ngIf="formSuccess" class="form-success" role="status">
+            {{ formSuccess }}
+          </div>
+
+          <div *ngIf="formError" class="form-error" role="alert">
+            {{ formError }}
+          </div>
+
+          <form (ngSubmit)="submitContactForm()" #contactNgForm="ngForm">
+            <div class="form-group">
+              <label for="contactFullName">Full Name *</label>
+              <input
+                id="contactFullName"
+                name="contactFullName"
+                type="text"
+                [(ngModel)]="contactForm.fullName"
+                placeholder="Your full name"
+                autocomplete="name"
+                required>
+            </div>
+
+            <div class="form-group">
+              <label for="contactEmail">Email Address *</label>
+              <input
+                id="contactEmail"
+                name="contactEmail"
+                type="email"
+                [(ngModel)]="contactForm.email"
+                placeholder="you@example.com"
+                autocomplete="email"
+                required>
+            </div>
+
+            <div class="form-group">
+              <label for="contactPhone">Phone Number</label>
+              <input
+                id="contactPhone"
+                name="contactPhone"
+                type="tel"
+                [(ngModel)]="contactForm.phone"
+                placeholder="Your phone number"
+                autocomplete="tel">
+            </div>
+
+            <div class="form-group">
+              <label for="contactSubject">Subject *</label>
+              <input
+                id="contactSubject"
+                name="contactSubject"
+                type="text"
+                [(ngModel)]="contactForm.subject"
+                placeholder="What is your message about?"
+                required>
+            </div>
+
+            <div class="form-group">
+              <label for="contactMessage">Message *</label>
+              <textarea
+                id="contactMessage"
+                name="contactMessage"
+                [(ngModel)]="contactForm.message"
+                placeholder="Write your message here..."
+                rows="5"
+                required></textarea>
+            </div>
+
+            <button
+              type="submit"
+              class="primary-button submit-button"
+              [disabled]="formLoading">
+              {{ formLoading ? 'Sending...' : 'Send Message' }}
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a class="brand footer-brand" href="#home">
+        <span class="brand-mark">
+          <img src="/images/logo.png" alt="Nasara Hospitality">
+        </span>
+        <span>Nasara Hospitality</span>
+      </a>
+
+      <p>
+        Hospitality with care, comfort, and a personal touch.
+      </p>
+
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <small>
+        © {{ currentYear }} Nasara Hospitality.
+        All rights reserved.
+      </small>
+    </div>
+  </footer>
+</div>

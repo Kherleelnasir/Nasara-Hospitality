@@ -1,1 +1,331 @@
-/* You can add global styles to this file, and also import other style files */
+/* =========================================================
+   HOSPITALITY WEBSITE — GLOBAL STYLES
+   Font: Roboto
+   Theme: Dark default + Light
+   ========================================================= */
+
+
+/* =========================================================
+   1. THEME TOKENS
+   ========================================================= */
+
+/* DARK DEFAULT */
+:root,
+[data-theme="dark"] {
+  --sidebar-bg: var(--card-bg);
+  --sidebar-text: #e2e8f0;
+  --sidebar-hover: rgba(255, 255, 255, 0.06);
+  --sidebar-active: #2563eb;
+  --sidebar-border: var(--card-border);
+
+  --page-bg: #0b1220;
+  --card-bg: #111827;
+  --card-border: #1f2937;
+  --card-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+
+  --input-bg: #0f172a;
+  --input-border: #334155;
+  --input-text: #f1f5f9;
+  --input-placeholder: #64748b;
+  --input-readonly-bg: #1e293b;
+  --input-readonly-text: #94a3b8;
+
+  --btn-primary: #2563eb;
+  --btn-primary-hover: #1d4ed8;
+  --btn-danger: #dc2626;
+  --btn-danger-hover: #b91c1c;
+
+  --success-text: #86efac;
+  --success-bg: rgba(34, 197, 94, 0.12);
+  --success-border: #22c55e;
+  --warning-text: #fde68a;
+  --warning-bg: rgba(245, 158, 11, 0.14);
+  --row-hover: rgba(255, 255, 255, 0.04);
+
+  --danger-text: #fca5a5;
+  --danger-bg: rgba(239, 68, 68, 0.12);
+  --danger-border: #ef4444;
+
+  --avatar-bg: #1e293b;
+  --focus-ring: rgba(37, 99, 235, 0.25);
+
+  --body-bg: #0b1220;
+  --body-text: #f1f5f9;
+  --scrollbar-track: #0f172a;
+  --scrollbar-thumb: #334155;
+  --scrollbar-thumb-hover: #475569;
+  --selection-bg: rgba(37, 99, 235, 0.35);
+  --selection-text: #ffffff;
+}
+
+
+/* LIGHT THEME */
+[data-theme="light"] {
+  --sidebar-bg: #1f2937;
+  --sidebar-text: #ffffff;
+  --sidebar-hover: rgba(255, 255, 255, 0.08);
+  --sidebar-active: #2563eb;
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+
+  --page-bg: #f5f6f8;
+  --card-bg: #ffffff;
+  --card-border: #e5e7eb;
+  --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+  --text-primary: #111827;
+  --text-secondary: #374151;
+  --text-muted: #6b7280;
+
+  --input-bg: #f9fafb;
+  --input-border: #d1d5db;
+  --input-text: #111827;
+  --input-placeholder: #9ca3af;
+  --input-readonly-bg: #f3f4f6;
+  --input-readonly-text: #6b7280;
+
+  --btn-primary: #2563eb;
+  --btn-primary-hover: #1d4ed8;
+  --btn-danger: #dc2626;
+  --btn-danger-hover: #b91c1c;
+
+  --success-text: #166534;
+  --success-bg: #f0fdf4;
+  --success-border: #22c55e;
+  --warning-text: #854d0e;
+  --warning-bg: #fef3c7;
+  --row-hover: #f9fafb;
+
+  --danger-text: #991b1b;
+  --danger-bg: #fef2f2;
+  --danger-border: #ef4444;
+
+  --avatar-bg: #f9fafb;
+  --focus-ring: rgba(37, 99, 235, 0.10);
+
+  --body-bg: #f5f6f8;
+  --body-text: #111827;
+  --scrollbar-track: #e5e7eb;
+  --scrollbar-thumb: #cbd5e1;
+  --scrollbar-thumb-hover: #94a3b8;
+  --selection-bg: rgba(37, 99, 235, 0.20);
+  --selection-text: #111827;
+}
+
+
+/* =========================================================
+   2. GLOBAL RESET AND FONT
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  overflow-x: clip;
+
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+
+  font-size: 15px;
+  line-height: 1.5;
+
+  background-color: var(--body-bg);
+  color: var(--body-text);
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+app-root {
+  display: block;
+  min-height: 100%;
+  font-family: "Roboto", sans-serif;
+}
+
+
+/* =========================================================
+   3. TYPOGRAPHY
+   ========================================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+li,
+label,
+small,
+strong,
+em,
+blockquote,
+figcaption,
+a {
+  font-family: "Roboto", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  color: var(--text-primary);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--btn-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================================================
+   4. BUTTONS AND FORM CONTROLS
+   ========================================================= */
+
+button,
+input,
+textarea,
+select {
+  font-family: "Roboto", sans-serif;
+  font-size: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+input,
+textarea,
+select {
+  color: var(--input-text);
+  background-color: var(--input-bg);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--input-placeholder);
+}
+
+/* Autofill styling for dark mode */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--input-text);
+  -webkit-box-shadow: 0 0 0 1000px var(--input-bg) inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+
+/* =========================================================
+   5. THEME TRANSITIONS
+   ========================================================= */
+
+html,
+body,
+.admin-layout,
+.sidebar,
+.main-content,
+.profile-card,
+.top-header,
+.profile-page {
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
+}
+
+
+/* =========================================================
+   6. SCROLLBAR STYLING
+   ========================================================= */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 6px;
+  border: 2px solid var(--scrollbar-track);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+
+/* =========================================================
+   7. TEXT SELECTION
+   ========================================================= */
+
+::selection {
+  background: var(--selection-bg);
+  color: var(--selection-text);
+}
+
+
+/* =========================================================
+   8. ACCESSIBILITY
+   ========================================================= */
+
+:focus-visible {
+  outline: 2px solid var(--btn-primary);
+  outline-offset: 2px;
+}
+
+img,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+video,
+iframe {
+  max-width: 100%;
+}

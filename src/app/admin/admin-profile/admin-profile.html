@@ -1,0 +1,317 @@
+
+<div class="profile-page">
+
+  <div class="content">
+    <!-- PROFILE OVERVIEW -->
+    <section class="profile-card profile-overview">
+    <div class="profile-avatar-section">
+
+      <div class="avatar-wrapper">
+        <img
+          *ngIf="photoPreview || profilePhotoUrl; else defaultAvatar"
+          [src]="photoPreview || profilePhotoUrl"
+          alt="Admin profile picture"
+          class="profile-avatar"
+        />
+
+        <ng-template #defaultAvatar>
+          <div class="profile-avatar default-avatar">
+            <span>👤</span>
+          </div>
+        </ng-template>
+
+        <!-- CAMERA ICON OVERLAY -->
+        <label
+          for="profilePhotoInput"
+          class="camera-upload-button"
+          title="Change profile picture"
+          aria-label="Change profile picture"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="21"
+            height="21"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path
+              d="M14 4h-4L8 7H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2-3Z"
+            />
+            <circle cx="12" cy="13" r="3.5" />
+          </svg>
+        </label>
+
+        <input
+          id="profilePhotoInput"
+          class="photo-file-input"
+          type="file"
+          accept="image/*"
+          (change)="onPhotoSelected($event)"
+        />
+      </div>
+
+      <div class="profile-overview-info">
+        <h2>
+          {{ (firstName + ' ' + lastName).trim() || currentUser?.displayName || 'Administrator' }}
+        </h2>
+
+        <p>{{ currentUser?.email || 'No email available' }}</p>
+
+        <span class="account-status">
+          <span class="status-dot"></span>
+          Active Administrator
+        </span>
+
+        <p class="photo-hint">
+          Click the camera icon to change your picture.
+        </p>
+
+        <div class="photo-actions" *ngIf="selectedPhoto">
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="uploadProfilePhoto()"
+            [disabled]="photoSaving"
+          >
+            {{ photoSaving ? 'Uploading...' : 'Save Picture' }}
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="cancelPhotoSelection()"
+            [disabled]="photoSaving"
+          >
+            Cancel
+          </button>
+        </div>
+
+        <p class="success-message" *ngIf="message">
+          {{ message }}
+        </p>
+
+        <p class="error-message" *ngIf="errorMessage">
+          {{ errorMessage }}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERSONAL INFORMATION -->
+  <section class="profile-card">
+    <div class="section-heading">
+      <div>
+        <h2>Personal Information</h2>
+        <p>Update your personal details.</p>
+      </div>
+    </div>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input
+          id="firstName"
+          type="text"
+          [(ngModel)]="firstName"
+          placeholder="Enter first name"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input
+          id="lastName"
+          type="text"
+          [(ngModel)]="lastName"
+          placeholder="Enter last name"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="profileEmail">Email Address</label>
+        <input
+          id="profileEmail"
+          type="email"
+          [value]="currentUser?.email || ''"
+          readonly
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input
+          id="phone"
+          type="tel"
+          [(ngModel)]="phone"
+          placeholder="Enter phone number"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ADDRESS INFORMATION -->
+  <section class="profile-card">
+    <div class="section-heading">
+      <div>
+        <h2>Address Information</h2>
+        <p>Manage your address details.</p>
+      </div>
+    </div>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="country">Country</label>
+        <input
+          id="country"
+          type="text"
+          [(ngModel)]="country"
+          placeholder="Enter country"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="state">State</label>
+        <input
+          id="state"
+          type="text"
+          [(ngModel)]="state"
+          placeholder="Enter state"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="city">City</label>
+        <input
+          id="city"
+          type="text"
+          [(ngModel)]="city"
+          placeholder="Enter city"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="zipCode">Postal Code</label>
+        <input
+          id="zipCode"
+          type="text"
+          [(ngModel)]="zipCode"
+          placeholder="Enter postal code"
+        />
+      </div>
+
+      <div class="form-group full-width">
+        <label for="address">Street Address</label>
+        <textarea
+          id="address"
+          rows="3"
+          [(ngModel)]="address"
+          placeholder="Enter your address"
+        ></textarea>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACCOUNT INFORMATION -->
+  <section class="profile-card">
+    <div class="section-heading">
+      <div>
+        <h2>Account Information</h2>
+        <p>Your administrator account details.</p>
+      </div>
+    </div>
+
+    <div class="account-information">
+      <div class="account-info-item">
+        <span>Email Address</span>
+        <strong>{{ currentUser?.email || 'Not available' }}</strong>
+      </div>
+
+      <div class="account-info-item">
+        <span>Account Status</span>
+        <strong class="account-status">
+          <span class="status-dot"></span>
+          Active
+        </strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECURITY -->
+  <section class="profile-card">
+    <div class="section-heading">
+      <div>
+        <h2>Security</h2>
+        <p>Change your account password.</p>
+      </div>
+    </div>
+
+    <form (ngSubmit)="changePassword()">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="newPassword">New Password</label>
+          <input
+            id="newPassword"
+            type="password"
+            name="newPassword"
+            [(ngModel)]="newPassword"
+            placeholder="Enter new password"
+            autocomplete="new-password"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirm New Password</label>
+          <input
+            id="confirmPassword"
+            type="password"
+            name="confirmPassword"
+            [(ngModel)]="confirmPassword"
+            placeholder="Confirm new password"
+            autocomplete="new-password"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="form-messages">
+        <p class="success-message" *ngIf="message">
+          {{ message }}
+        </p>
+
+        <p class="error-message" *ngIf="errorMessage">
+          {{ errorMessage }}
+        </p>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="saving"
+      >
+        {{ saving ? 'Updating Password...' : 'Update Password' }}
+      </button>
+    </form>
+  </section>
+
+  <!-- SAVE PROFILE -->
+  <div class="profile-footer">
+    <p>Remember to save your changes.</p>
+
+    <button
+      type="button"
+      class="btn btn-primary save-profile-button"
+      (click)="saveProfile()"
+      [disabled]="savingProfile"
+    >
+      {{ savingProfile ? 'Saving...' : 'Save Changes' }}
+    </button>
+    </div>
+
+  </div>
+</div>

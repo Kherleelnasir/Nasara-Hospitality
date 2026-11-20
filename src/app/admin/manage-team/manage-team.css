@@ -1,0 +1,664 @@
+
+:host {
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* ================================
+   MANAGE TEAM PAGE
+================================ */
+
+.manage-team-page {
+  min-height: 100dvh;
+  background: var(--page-bg);
+}
+
+/* ================================
+   HEADER
+================================ */
+
+.top-header {
+  background: var(--card-bg);
+  padding: 25px 30px;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.top-header h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.top-header p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 15px;
+}
+
+/* ================================
+   CONTENT
+================================ */
+
+.content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px;
+  box-sizing: border-box;
+}
+
+/* ================================
+   LOADING
+================================ */
+
+.loading-card {
+  min-height: 250px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+}
+
+.loading-card p {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.loading-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--card-border);
+  border-top-color: var(--btn-primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ================================
+   INFORMATION MESSAGE
+================================ */
+
+.info-message {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  margin-bottom: 24px;
+  background: rgba(37, 99, 235, 0.12);
+  border: 1px solid rgba(37, 99, 235, 0.30);
+  border-radius: 8px;
+  color: var(--text-primary);
+}
+
+.info-icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--btn-primary);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.info-message strong {
+  font-size: 14px;
+}
+
+.info-message p {
+  margin: 5px 0 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ================================
+   CARDS
+================================ */
+
+.business-card {
+  background: var(--card-bg);
+  padding: 26px;
+  margin-bottom: 24px;
+  border-radius: 16px;
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+}
+
+.section-header {
+  margin-bottom: 24px;
+}
+
+.section-header h2 {
+  margin: 0 0 7px;
+  font-size: 20px;
+  color: var(--text-primary);
+}
+
+.section-header p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* ================================
+   FORM GRID
+================================ */
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.form-group label,
+.photo-label,
+.publish-option > label:first-child {
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 14px;
+  border: 1px solid var(--input-border);
+  border-radius: 7px;
+  background: var(--input-bg);
+  color: var(--input-text);
+  font-size: 14px;
+  font-family: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--input-placeholder);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--btn-primary);
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+.form-group input[type="number"] {
+  appearance: textfield;
+}
+
+/* ================================
+   PHOTO UPLOAD
+================================ */
+
+.photo-section {
+  margin-top: 28px;
+}
+
+.photo-label {
+  display: block;
+  margin-bottom: 12px;
+}
+
+.photo-upload-layout {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+
+.photo-preview {
+  width: 140px;
+  height: 140px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  background: var(--input-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 12px;
+  text-align: center;
+  padding: 10px;
+}
+
+.photo-placeholder-icon {
+  font-size: 34px;
+  font-weight: 300;
+}
+
+.photo-upload-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+.upload-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 18px;
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  background: var(--input-bg);
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.upload-button:hover {
+  border-color: var(--btn-primary);
+}
+
+.file-input:focus-visible + .upload-button {
+  outline: 2px solid var(--btn-primary);
+  outline-offset: 3px;
+}
+
+.photo-upload-details p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.photo-upload-details .photo-hint {
+  font-size: 12px;
+}
+
+/* ================================
+   DISPLAY SETTINGS
+================================ */
+
+.settings-section {
+  margin-top: 30px;
+  padding-top: 26px;
+  border-top: 1px solid var(--card-border);
+}
+
+.publish-option {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.publish-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 14px;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.publish-toggle input {
+  width: 17px;
+  height: 17px;
+  accent-color: var(--btn-primary);
+  cursor: pointer;
+}
+
+.publish-option p {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ================================
+   MESSAGES
+================================ */
+
+.success-message {
+  padding: 14px 16px;
+  margin-top: 20px;
+  border-radius: 7px;
+  background: var(--success-bg);
+  color: var(--success-text);
+  border-left: 4px solid var(--success-border);
+  font-size: 14px;
+}
+
+.error-message {
+  padding: 14px 16px;
+  margin-top: 20px;
+  border-radius: 7px;
+  background: var(--danger-bg);
+  color: var(--danger-text);
+  border-left: 4px solid var(--danger-border);
+  font-size: 14px;
+}
+
+/* ================================
+   FORM ACTIONS
+================================ */
+
+.bottom-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.save-button,
+.cancel-button {
+  padding: 13px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, opacity 0.2s ease;
+}
+
+.save-button {
+  background: var(--btn-primary);
+  color: #ffffff;
+}
+
+.save-button:hover {
+  background: var(--btn-primary-hover);
+}
+
+.cancel-button {
+  background: var(--input-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--input-border);
+}
+
+.cancel-button:hover {
+  border-color: var(--btn-primary);
+}
+
+.save-button:disabled,
+.cancel-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ================================
+   EXISTING TEAM MEMBERS
+================================ */
+
+.empty-team {
+  padding: 25px;
+  border: 1px dashed var(--card-border);
+  border-radius: 8px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.team-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.team-member-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.team-member-row:first-child {
+  padding-top: 0;
+}
+
+.team-member-row:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.team-member-photo {
+  width: 76px;
+  height: 76px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 9px;
+  background: var(--input-bg);
+  border: 1px solid var(--card-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.team-member-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.small-photo-placeholder {
+  color: var(--text-muted);
+  font-size: 26px;
+}
+
+.team-member-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.team-member-details h3 {
+  margin: 0 0 5px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  overflow-wrap: anywhere;
+}
+
+.member-position {
+  margin: 0 0 8px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.member-biography {
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  overflow-wrap: anywhere;
+}
+
+.status-label {
+  display: inline-block;
+  padding: 5px 9px;
+  border-radius: 5px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.status-published {
+  background: var(--success-bg);
+  color: var(--success-text);
+}
+
+.status-hidden {
+  background: var(--input-bg);
+  color: var(--text-muted);
+  border: 1px solid var(--card-border);
+}
+
+/* ================================
+   TEAM MEMBER ACTIONS
+================================ */
+
+.team-member-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.action-button {
+  padding: 8px 11px;
+  border: 1px solid var(--input-border);
+  border-radius: 5px;
+  background: var(--input-bg);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.action-button:hover {
+  border-color: var(--btn-primary);
+}
+
+.action-button.delete-button {
+  color: var(--danger-text);
+}
+
+.action-button.delete-button:hover {
+  border-color: var(--danger-border);
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 700px) {
+  .content {
+    padding: 18px;
+  }
+
+  .top-header {
+    padding: 20px;
+  }
+
+  .business-card {
+    padding: 20px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .full-width {
+    grid-column: auto;
+  }
+
+  .photo-upload-layout {
+    align-items: flex-start;
+  }
+
+  .team-member-row {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .team-member-details {
+    flex-basis: calc(100% - 100px);
+  }
+
+  .team-member-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .bottom-actions {
+    flex-direction: column-reverse;
+  }
+
+  .save-button,
+  .cancel-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  .content {
+    padding: 14px;
+  }
+
+  .business-card {
+    padding: 16px;
+  }
+
+  .photo-preview {
+    width: 110px;
+    height: 110px;
+  }
+
+  .team-member-photo {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding: 12px;
+  }
+}

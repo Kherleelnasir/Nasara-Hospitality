@@ -1,0 +1,480 @@
+<div class="business-page">
+
+  <div class="content">
+
+    <!-- Loading -->
+    <div
+      class="loading-card"
+      *ngIf="loading"
+    >
+      <div class="loading-spinner"></div>
+
+      <p>
+        Loading business information...
+      </p>
+    </div>
+
+
+    <!-- Main Content -->
+    <div *ngIf="!loading">
+
+      <!-- No Information Message -->
+      <div
+        class="info-message"
+        *ngIf="!businessExists"
+      >
+        <div class="info-icon">
+          i
+        </div>
+
+        <div>
+          <strong>No business information has been added yet.</strong>
+
+          <p>
+            Enter your hospitality business information below and
+            click Save Changes.
+          </p>
+        </div>
+      </div>
+
+
+      <!-- Business Information Form -->
+      <section class="business-card">
+
+        <div class="section-header">
+
+          <h2>Basic Information</h2>
+
+          <p>
+            Enter the basic information about your hospitality business.
+          </p>
+
+        </div>
+
+
+        <div class="form-grid">
+
+          <!-- Business Name -->
+          <div class="form-group full-width">
+
+            <label for="businessName">
+              Business Name
+            </label>
+
+            <input
+              id="businessName"
+              type="text"
+              [(ngModel)]="businessName"
+              placeholder="Enter business name"
+            >
+
+          </div>
+
+
+          <!-- Short Description -->
+          <div class="form-group full-width">
+
+            <label for="shortDescription">
+              Short Description
+            </label>
+
+            <input
+              id="shortDescription"
+              type="text"
+              [(ngModel)]="shortDescription"
+              placeholder="Enter a short description"
+            >
+
+          </div>
+
+
+          <!-- Full Description -->
+          <div class="form-group full-width">
+
+            <label for="description">
+              Business Description
+            </label>
+
+            <textarea
+              id="description"
+              [(ngModel)]="description"
+              rows="5"
+              placeholder="Describe your hospitality business"
+            ></textarea>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Contact Information -->
+      <section class="business-card">
+
+        <div class="section-header">
+
+          <h2>Contact Information</h2>
+
+          <p>
+            Contact details that will be displayed to website visitors.
+          </p>
+
+        </div>
+
+
+        <div class="form-grid">
+
+          <!-- Phone -->
+          <div class="form-group">
+
+            <label for="phone">
+              Phone Number
+            </label>
+
+            <input
+              id="phone"
+              type="tel"
+              [(ngModel)]="phone"
+              placeholder="Enter phone number"
+            >
+
+          </div>
+
+
+          <!-- WhatsApp -->
+          <div class="form-group">
+
+            <label for="whatsapp">
+              WhatsApp Number
+            </label>
+
+            <input
+              id="whatsapp"
+              type="tel"
+              [(ngModel)]="whatsapp"
+              placeholder="Enter WhatsApp number"
+            >
+
+          </div>
+
+
+          <!-- Email -->
+          <div class="form-group">
+
+            <label for="email">
+              Email Address
+            </label>
+
+            <input
+              id="email"
+              type="email"
+              [(ngModel)]="email"
+              placeholder="Enter email address"
+            >
+
+          </div>
+
+
+          <!-- Website -->
+          <div class="form-group">
+
+            <label for="website">
+              Website
+            </label>
+
+            <input
+              id="website"
+              type="url"
+              [(ngModel)]="website"
+              placeholder="https://example.com"
+            >
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Social Media -->
+      <section class="business-card">
+
+        <div class="section-header">
+
+          <h2>Social Media</h2>
+
+          <p>
+            Add your social media links that will be displayed on your website.
+          </p>
+
+        </div>
+
+
+        <div class="form-grid">
+
+          <!-- Facebook -->
+          <div class="form-group">
+
+            <label for="facebook">
+              Facebook
+            </label>
+
+            <input
+              id="facebook"
+              type="url"
+              [(ngModel)]="facebook"
+              placeholder="https://facebook.com/yourbusiness"
+            >
+
+          </div>
+
+
+          <!-- Instagram -->
+          <div class="form-group">
+
+            <label for="instagram">
+              Instagram
+            </label>
+
+            <input
+              id="instagram"
+              type="url"
+              [(ngModel)]="instagram"
+              placeholder="https://instagram.com/yourbusiness"
+            >
+
+          </div>
+
+
+          <!-- TikTok -->
+          <div class="form-group">
+
+            <label for="tiktok">
+              TikTok
+            </label>
+
+            <input
+              id="tiktok"
+              type="url"
+              [(ngModel)]="tiktok"
+              placeholder="https://tiktok.com/@yourbusiness"
+            >
+
+          </div>
+
+
+          <!-- X / Twitter -->
+          <div class="form-group">
+
+            <label for="twitter">
+              X / Twitter
+            </label>
+
+            <input
+              id="twitter"
+              type="url"
+              [(ngModel)]="twitter"
+              placeholder="https://x.com/yourbusiness"
+            >
+
+          </div>
+
+
+          <!-- YouTube -->
+          <div class="form-group">
+
+            <label for="youtube">
+              YouTube
+            </label>
+
+            <input
+              id="youtube"
+              type="url"
+              [(ngModel)]="youtube"
+              placeholder="https://youtube.com/@yourbusiness"
+            >
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Location -->
+      <section class="business-card">
+
+        <div class="section-header">
+
+          <h2>Business Location</h2>
+
+          <p>
+            Enter the location of your hospitality business.
+          </p>
+
+        </div>
+
+
+        <div class="form-grid">
+
+          <!-- Country -->
+          <div class="form-group">
+
+            <label for="country">
+              Country
+            </label>
+
+            <input
+              id="country"
+              type="text"
+              [(ngModel)]="country"
+              placeholder="Enter country"
+            >
+
+          </div>
+
+
+          <!-- State -->
+          <div class="form-group">
+
+            <label for="state">
+              State
+            </label>
+
+            <input
+              id="state"
+              type="text"
+              [(ngModel)]="state"
+              placeholder="Enter state"
+            >
+
+          </div>
+
+
+          <!-- City -->
+          <div class="form-group">
+
+            <label for="city">
+              City
+            </label>
+
+            <input
+              id="city"
+              type="text"
+              [(ngModel)]="city"
+              placeholder="Enter city"
+            >
+
+          </div>
+
+
+          <!-- Address -->
+          <div class="form-group">
+
+            <label for="address">
+              Address
+            </label>
+
+            <input
+              id="address"
+              type="text"
+              [(ngModel)]="address"
+              placeholder="Enter business address"
+            >
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Operating Information -->
+      <section class="business-card">
+
+        <div class="section-header">
+
+          <h2>Operating Information</h2>
+
+          <p>
+            Add your normal business operating hours.
+          </p>
+
+        </div>
+
+
+        <div class="form-grid">
+
+          <!-- Opening Time -->
+          <div class="form-group">
+
+            <label for="openingTime">
+              Opening Time
+            </label>
+
+            <input
+              id="openingTime"
+              type="time"
+              [(ngModel)]="openingTime"
+            >
+
+          </div>
+
+
+          <!-- Closing Time -->
+          <div class="form-group">
+
+            <label for="closingTime">
+              Closing Time
+            </label>
+
+            <input
+              id="closingTime"
+              type="time"
+              [(ngModel)]="closingTime"
+            >
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Messages -->
+      <div
+        class="success-message"
+        *ngIf="successMessage"
+      >
+        {{ successMessage }}
+      </div>
+
+
+      <div
+        class="error-message"
+        *ngIf="errorMessage"
+      >
+        {{ errorMessage }}
+      </div>
+
+
+      <!-- Save -->
+      <div class="bottom-actions">
+
+        <button
+          type="button"
+          class="save-button"
+          (click)="saveBusinessInformation()"
+          [disabled]="saving"
+        >
+          {{ saving ? 'Saving...' : 'Save Changes' }}
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

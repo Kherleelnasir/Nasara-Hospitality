@@ -1,0 +1,91 @@
+<div class="login-page" [attr.data-theme]="themeService.current">
+
+  <div class="login-box">
+
+    <h1>{{ isResetMode ? 'Reset Password' : 'Admin Login' }}</h1>
+
+    <p class="subtitle">
+      {{ isResetMode
+        ? 'Enter your email to receive a password reset link.'
+        : 'Sign in to access the admin dashboard' }}
+    </p>
+
+    <form (ngSubmit)="isResetMode ? resetPassword() : login()">
+
+      <div class="form-group">
+        <label for="email">Email</label>
+
+        <input
+          type="email"
+          id="email"
+          name="email"
+          [(ngModel)]="email"
+          placeholder="Enter your email"
+          required
+        />
+      </div>
+
+      <div class="form-group" *ngIf="!isResetMode">
+        <label for="password">Password</label>
+
+        <input
+          type="password"
+          id="password"
+          name="password"
+          [(ngModel)]="password"
+          placeholder="Enter your password"
+          required
+        />
+      </div>
+
+      <p
+        class="error"
+        *ngIf="errorMessage"
+      >
+        {{ errorMessage }}
+      </p>
+
+      <p
+        class="success"
+        *ngIf="successMessage"
+        role="status"
+      >
+        {{ successMessage }}
+      </p>
+
+      <button
+        type="submit"
+        [disabled]="loading"
+      >
+        {{ loading
+          ? (isResetMode ? 'Sending...' : 'Signing in...')
+          : (isResetMode ? 'Send Reset Link' : 'Login') }}
+      </button>
+
+    </form>
+
+    <button
+      *ngIf="!isResetMode"
+      type="button"
+      class="text-button"
+      (click)="showPasswordReset()"
+    >
+      Forgot password?
+    </button>
+
+    <button
+      *ngIf="isResetMode"
+      type="button"
+      class="text-button"
+      (click)="showLogin()"
+    >
+      Back to login
+    </button>
+
+    <p class="signup-note" *ngIf="!isResetMode">
+      Need an account? Contact an administrator to request access.
+    </p>
+
+  </div>
+
+</div>

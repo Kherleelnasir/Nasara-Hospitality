@@ -1,0 +1,298 @@
+
+<div class="business-page manage-team-page">
+
+  <div class="content">
+
+    <!-- Loading -->
+    <div class="loading-card" *ngIf="loading">
+      <div class="loading-spinner"></div>
+      <p>Loading team members...</p>
+    </div>
+
+    <div *ngIf="!loading">
+
+      <!-- Information Message -->
+      <div class="info-message" *ngIf="teamMembers.length === 0">
+        <div class="info-icon">i</div>
+        <div>
+          <strong>No team members have been added yet.</strong>
+          <p>Add your first team member using the form below.</p>
+        </div>
+      </div>
+
+      <!-- Team Member Form -->
+      <section class="business-card">
+
+        <div class="section-header">
+          <h2>
+            {{ editingId ? 'Edit Team Member' : 'Add Team Member' }}
+          </h2>
+          <p>
+            Enter the member's details and choose a profile photo.
+          </p>
+        </div>
+
+        <form (ngSubmit)="saveMember()">
+
+          <div class="form-grid">
+
+            <!-- Full Name -->
+            <div class="form-group full-width">
+              <label for="fullName">Full Name *</label>
+              <input
+                id="fullName"
+                name="fullName"
+                type="text"
+                [(ngModel)]="member.fullName"
+                placeholder="Enter team member's full name"
+                required
+              >
+            </div>
+
+            <!-- Position -->
+            <div class="form-group full-width">
+              <label for="position">Job Title / Position *</label>
+              <input
+                id="position"
+                name="position"
+                type="text"
+                [(ngModel)]="member.position"
+                placeholder="e.g. General Manager"
+                required
+              >
+            </div>
+
+            <!-- Biography -->
+            <div class="form-group full-width">
+              <label for="biography">Short Biography</label>
+              <textarea
+                id="biography"
+                name="biography"
+                [(ngModel)]="member.biography"
+                rows="5"
+                placeholder="Write a short introduction about this person..."
+              ></textarea>
+            </div>
+
+          </div>
+
+          <!-- Profile Photo -->
+          <div class="photo-section">
+
+            <label class="photo-label">Profile Photo</label>
+
+            <div class="photo-upload-layout">
+
+              <div class="photo-preview">
+                <img
+                  *ngIf="photoPreview"
+                  [src]="photoPreview"
+                  alt="Team member photo preview"
+                >
+
+                <div class="photo-placeholder" *ngIf="!photoPreview">
+                  <span class="photo-placeholder-icon">+</span>
+                  <span>No photo selected</span>
+                </div>
+              </div>
+
+              <div class="photo-upload-details">
+
+                <label for="teamPhoto" class="upload-button">
+                  Choose Photo
+                </label>
+
+                <input
+                  id="teamPhoto"
+                  class="file-input"
+                  type="file"
+                  accept="image/*"
+                  (change)="onPhotoSelected($event)"
+                >
+
+                <p>Choose an image from your computer.</p>
+                <p class="photo-hint">Maximum file size: 5 MB.</p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Display Settings -->
+          <div class="settings-section">
+
+            <div class="section-header">
+              <h2>Display Settings</h2>
+              <p>Control how this team member appears on your website.</p>
+            </div>
+
+            <div class="form-grid">
+
+              <div class="form-group">
+                <label for="displayOrder">Display Order</label>
+                <input
+                  id="displayOrder"
+                  name="displayOrder"
+                  type="number"
+                  min="1"
+                  step="1"
+                  [(ngModel)]="member.displayOrder"
+                >
+              </div>
+
+              <div class="publish-option">
+                <label for="published">Publish Profile</label>
+
+                <label class="publish-toggle">
+                  <input
+                    id="published"
+                    name="published"
+                    type="checkbox"
+                    [(ngModel)]="member.published"
+                  >
+                  <span>
+                    {{ member.published ? 'Published' : 'Hidden' }}
+                  </span>
+                </label>
+
+                <p>
+                  Published profiles can appear on the public website.
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Messages -->
+          <div class="success-message" *ngIf="successMessage">
+            {{ successMessage }}
+          </div>
+
+          <div class="error-message" *ngIf="errorMessage">
+            {{ errorMessage }}
+          </div>
+
+          <!-- Form Actions -->
+          <div class="bottom-actions">
+
+            <button
+              *ngIf="editingId"
+              type="button"
+              class="cancel-button"
+              (click)="resetForm()"
+              [disabled]="saving"
+            >
+              Cancel Edit
+            </button>
+
+            <button
+              type="submit"
+              class="save-button"
+              [disabled]="saving"
+            >
+              {{
+                saving
+                  ? 'Saving...'
+                  : editingId
+                    ? 'Update Team Member'
+                    : 'Save Team Member'
+              }}
+            </button>
+
+          </div>
+
+        </form>
+
+      </section>
+
+      <!-- Existing Team Members -->
+      <section class="business-card">
+
+        <div class="section-header">
+          <h2>Existing Team Members</h2>
+          <p>View, edit, publish, or remove team member profiles.</p>
+        </div>
+
+        <div class="empty-team" *ngIf="teamMembers.length === 0">
+          <p>Your team member list will appear here after you add profiles.</p>
+        </div>
+
+        <div class="team-list" *ngIf="teamMembers.length > 0">
+
+          <div class="team-member-row" *ngFor="let person of teamMembers">
+
+            <!-- Member Photo -->
+            <div class="team-member-photo">
+
+              <img
+                *ngIf="person.photoUrl"
+                [src]="person.photoUrl"
+                [alt]="person.fullName"
+              >
+
+              <div class="small-photo-placeholder" *ngIf="!person.photoUrl">
+                +
+              </div>
+
+            </div>
+
+            <!-- Member Details -->
+            <div class="team-member-details">
+              <h3>{{ person.fullName }}</h3>
+              <p class="member-position">{{ person.position }}</p>
+
+              <p class="member-biography" *ngIf="person.biography">
+                {{ person.biography }}
+              </p>
+
+              <span
+                class="status-label"
+                [class.status-published]="person.published"
+                [class.status-hidden]="!person.published"
+              >
+                {{ person.published ? 'Published' : 'Hidden' }}
+              </span>
+            </div>
+
+            <!-- Member Actions -->
+            <div class="team-member-actions">
+
+              <button
+                type="button"
+                class="action-button"
+                (click)="editMember(person)"
+              >
+                Edit
+              </button>
+
+              <button
+                type="button"
+                class="action-button"
+                (click)="togglePublished(person)"
+              >
+                {{ person.published ? 'Hide' : 'Publish' }}
+              </button>
+
+              <button
+                type="button"
+                class="action-button delete-button"
+                (click)="deleteMember(person)"
+              >
+                Delete
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </div>
+
+</div>
